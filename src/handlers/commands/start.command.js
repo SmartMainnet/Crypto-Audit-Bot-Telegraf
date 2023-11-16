@@ -6,7 +6,7 @@ const composer = new Composer()
 
 exports.startCommand = composer.command('start', async ctx => {
   try {
-    const from = ctx.update.message.from
+    const user = ctx.update.message.from
     await ctx.reply(ctx.i18n.t('start', { first_name: ctx.me.first_name }))
 
     await ctx.reply(
@@ -22,7 +22,7 @@ exports.startCommand = composer.command('start', async ctx => {
       }
     )
 
-    createUser(from)
+    createUser(user)
   } catch (e) {
     console.log(e)
   }

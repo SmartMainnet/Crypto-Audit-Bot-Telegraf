@@ -5,13 +5,13 @@ exports.checkChains = async (ctx, next) => {
   try {
     const msgWait = await ctx.reply(ctx.i18n.t('checking'))
     const message_id = ctx.update.message.message_id
-    const from = ctx.update.message.from
+    const user = ctx.update.message.from
     const address = ctx.update.message.text.toLowerCase()
     const chains = (await getChains(address)).filter(chain => chain.status)
 
     if (chains.length === 1) {
       ctx.msgWait = msgWait
-      ctx.user = from
+      ctx.user = user
       ctx.address = address
       ctx.chain = chains[0]
       ctx.telegram.editMessageText(

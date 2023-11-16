@@ -1,14 +1,14 @@
 const { UserModel } = require('../models')
 
-exports.createUser = async from => {
-  const userFromDb = await UserModel.findOne({ id: from.id })
+exports.createUser = async user => {
+  const userFromDb = await UserModel.findOne({ id: user.id })
 
   if (!userFromDb) {
     const user = new UserModel({
-      id: from.id,
-      username: from.username,
-      first_name: from.first_name,
-      last_name: from.last_name
+      id: user.id,
+      username: user.username,
+      first_name: user.first_name,
+      last_name: user.last_name
     })
   
     user
